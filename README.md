@@ -41,13 +41,10 @@ Stay tuned!
 ## Citation
 
 ```bibtex
-@misc{galim2025draftbasedapproximateinferencellms,
-      title={Draft-based Approximate Inference for LLMs}, 
-      author={Kevin Galim and Ethan Ewer and Wonjun Kang and Minjae Lee and Hyung Il Koo and Kangwook Lee},
-      year={2025},
-      eprint={2506.08373},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2506.08373}, 
+@article{galim2025draft,
+  title={Draft-based Approximate Inference for LLMs},
+  author={Galim, Kevin and Ewer, Ethan and Kang, Wonjun and Lee, Minjae and Koo, Hyung Il and Lee, Kangwook},
+  journal={arXiv preprint arXiv:2506.08373},
+  year={2025}
 }
 ```
