@@ -1,0 +1,8 @@
+/.vscode/
+/data/
+/untracked/
+/dataset/ruler/data/synthetic/json/hotpotqa.json
+/dataset/ruler/data/synthetic/json/PaulGrahamEssays.json
+/dataset/ruler/data/synthetic/json/squad.json
+/wandb/
+__pycache__/

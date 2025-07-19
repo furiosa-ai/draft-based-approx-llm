@@ -1,0 +1,23 @@
+draft_model:
+  model_name_or_path: Qwen/Qwen2.5-0.5B-Instruct
+  dtype: bfloat16
+  attn_implementation: flash_attention_2
+target_model:
+  model_name_or_path: Qwen/Qwen2.5-14B-Instruct
+  dtype: bfloat16
+  attn_implementation: flash_attention_2
+dataset:
+  dataset_name: ruler
+  seq_len: 4096
+  task: niah_multiquery
+sparse_config:
+  sparse_type: specpc
+  max_capacity_prompt: 3072
+  window_size: 64
+  pool_type: max
+  kernel_size: 64
+  neighbor_tokens: 64
+  reduction_type: max
+  lookahead_tokens: 1
+  starting_layer_index: 8
+  weighted_query: true

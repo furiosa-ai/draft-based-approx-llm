@@ -1,0 +1,22 @@
+draft_model:
+  model_name_or_path: Qwen/Qwen2.5-0.5B-Instruct
+  dtype: bfloat16
+  attn_implementation: flash_attention_2
+target_model:
+  model_name_or_path: Qwen/Qwen2.5-14B-Instruct
+  dtype: bfloat16
+  attn_implementation: flash_attention_2
+dataset:
+  dataset_name: ruler
+  seq_len: 16384
+  task: qa_2
+sparse_config:
+  sparse_type: speckv
+  max_capacity_prompt: 1024
+  window_size: 32
+  pool_type: max
+  kernel_size: 7
+  reduction_type: max
+  lookahead_tokens: null
+  prefill_window_size: 2048
+  prefill_vertical_size: 2048

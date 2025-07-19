@@ -1,0 +1,16 @@
+transformers==4.51.3
+datasets==3.0.2
+pandas==2.2.3
+scipy==1.14.1
+wandb==0.18.5
+jieba==0.42.1
+fuzzywuzzy==0.18.0
+rouge==1.0.1
+nltk==3.9.1
+tenacity==9.1.2
+wonderwords==2.2.0
+html2text==2024.2.26
+bs4==0.0.2
+accelerate==1.8.1
+python-Levenshtein==0.27.1
+git+https://github.com/microsoft/MInference
