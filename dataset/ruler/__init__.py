@@ -264,7 +264,7 @@ class RulerDataset(DatasetBase):
             "--save_dir", self.data_path, 
             "--max_seq_length", self.seq_len, 
             "--benchmark", "synthetic", 
-            "--benchmark_file", self.benchmark_config,
+            # "--benchmark_file", self.benchmark_config,
             "--task", self.task,
             "--tokenizer_path", self.model_name_or_path, 
             "--num_samples", ruler_dft_num_samples,  # self.num_samples,
