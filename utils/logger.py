@@ -1,4 +1,7 @@
-import wandb
+try:
+    import wandb
+except ImportError:
+    wandb = None
 
 
 class Logger:

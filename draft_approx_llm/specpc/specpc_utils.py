@@ -175,6 +175,7 @@ class AttentionCache:
         # cut off generated keys
         attn_weights_per_gen_token = [a[:, :seq_len] for a in attn_weights_per_gen_token]
 
+        # aggregate over all input and output tokens (k=1 for output tokens)
         attn_weights_agg = reduce(torch.stack(attn_weights_per_gen_token, 0), "n b k -> b k", self.reduction_type)
 
         self.cache = []
@@ -216,11 +217,12 @@ def generate_aggregated_attention(model, config, input_ids, max_new_tokens=None,
         max_new_tokens = config.lookahead_tokens
 
     with patch_model_attn_cache(model, config) as attn_cache:
-        model.generate(
+        input_output_ids = model.generate(
             input_ids=input_ids,
             max_new_tokens=max_new_tokens,
-            use_cache=max_new_tokens > 1,
+            use_cache=max_new_tokens is None or max_new_tokens > 1,
             **kwargs,
         )
+        output_ids = input_output_ids[:, input_ids.shape[1]:]
 
-        return attn_cache.get_aggreated_attention()
+        return attn_cache.get_aggreated_attention(), output_ids

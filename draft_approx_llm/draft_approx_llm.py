@@ -56,6 +56,7 @@ class DraftApproxLLMConfig:
         cls = {
             "speckv": SpecKVConfig,
             "specpc": SpecPCConfig,
+            "speckvpc": SpecKVPCConfig,
         }[sparse_type]
 
         return cls(**config_dict)
@@ -138,6 +139,33 @@ class SpecPCConfig(DraftApproxLLMConfig):
 
 
 @dataclass
+class SpecKVPCConfig(DraftApproxLLMConfig):
+    """
+    Configuration for SpecKVPC.
+    """
+
+    specpc_config: SpecPCConfig = field(
+        default_factory=SpecPCConfig,
+        metadata={"help": "Configuration for SpecPC."}
+    )
+
+    speckv_config: SpecKVConfig = field(
+        default_factory=SpecKVConfig,
+        metadata={"help": "Configuration for SpecKV."}
+    )
+
+    def __post_init__(self):
+        if isinstance(self.specpc_config, dict):
+            self.specpc_config = SpecPCConfig(**self.specpc_config)
+        if isinstance(self.speckv_config, dict):
+            self.speckv_config = SpecKVConfig(**self.speckv_config)
+
+    @property
+    def sparse_type(self):
+        return "speckvpc"
+
+
+@dataclass
 class DraftApproxLLMModelOutput:
     """
     Represents the output of the Draft Approximate LLM model.
@@ -167,10 +195,12 @@ class DraftApproxLLMModelOutput:
 def patch_model(model, draft_model, config):
     from draft_approx_llm.specpc.specpc import specpc_patch_model
     from draft_approx_llm.speckv.speckv import speckv_patch_model
+    from draft_approx_llm.speckvpc.speckvpc import speckvpc_patch_model
 
     patch_fn = {
         "speckv": speckv_patch_model,
         "specpc": specpc_patch_model,
+        "speckvpc": speckvpc_patch_model,
     }.get(config.sparse_type, None)
 
     if patch_fn is None:

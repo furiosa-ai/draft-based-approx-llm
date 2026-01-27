@@ -47,7 +47,10 @@ def specpc_select_input_token_indices(attn_per_key: torch.Tensor, specpc_config:
         attn_per_key = pool_func(attn_per_key_pad, kernel_size=kernel_size, stride=1)
 
     # sorted by importance descending
-    ind = attn_per_key.topk(specpc_config.max_capacity_prompt, sorted=True, dim=1).indices
+    if specpc_config.max_capacity_prompt < seq_len:
+        ind = attn_per_key.topk(specpc_config.max_capacity_prompt, sorted=True, dim=1).indices
+    else:
+        ind = torch.arange(seq_len, device=attn_per_key.device).unsqueeze(0).repeat(batch_size, 1)
 
     if neighbor_tokens is None:
         neighbor_tokens = kernel_size
@@ -83,9 +86,9 @@ def specpc_select_input_token_indices(attn_per_key: torch.Tensor, specpc_config:
     return ind
 
 
-def specpc_compress_prompt(specpc_draft_model, specpc_config, input_ids, attention_mask=None, **kwargs):
-    if input_ids.shape[1] > specpc_config.max_capacity_prompt:
-        attn_per_key = generate_aggregated_attention(specpc_draft_model, specpc_config, input_ids=input_ids, attention_mask=attention_mask, **kwargs)  # b k
+def specpc_compress_prompt(specpc_draft_model, specpc_config, input_ids, attention_mask=None, force_lookahead=True, **kwargs):
+    if input_ids.shape[1] > specpc_config.max_capacity_prompt or force_lookahead:
+        attn_per_key, lookahead_ids = generate_aggregated_attention(specpc_draft_model, specpc_config, input_ids=input_ids, attention_mask=attention_mask, **kwargs)  # b k
         important_token_ind = specpc_select_input_token_indices(attn_per_key, specpc_config)
         input_ids = torch.gather(input_ids, 1, important_token_ind)
 
@@ -95,6 +98,7 @@ def specpc_compress_prompt(specpc_draft_model, specpc_config, input_ids, attenti
     return dict(
         input_ids=input_ids,
         attention_mask=attention_mask,
+        lookahead_ids=lookahead_ids,  # used by speckv-pc
         **kwargs,  # e.g., sampling params
     )
 
@@ -104,6 +108,7 @@ def specpc_generate(self, *args, max_new_tokens, specpc_draft_model, specpc_conf
     gen_kwargs = specpc_compress_prompt(
         specpc_draft_model, specpc_config, *args, **kwargs
     )
+    gen_kwargs.pop("lookahead_ids")  # not used by specpc
     
     # target generate
     out = self.__class__.generate(
