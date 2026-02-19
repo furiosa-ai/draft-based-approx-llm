@@ -21,12 +21,8 @@
 </p>
 
 <p>
-    <a href="https://arxiv.org/abs/2506.08373">
-        <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2506.08373-b31b1b.svg">
-    </a>
-    <a href="LICENSE">
-        <img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
-    </a>
+    <a href="https://arxiv.org/abs/2506.08373"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2506.08373-b31b1b.svg"></a>
+    <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
 </p>
 
 <br>
