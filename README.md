@@ -8,12 +8,12 @@
     <a href="https://scholar.google.com/citations?user=Q-ARWkwAAAAJ&hl=eh" target="_blank">Wonjun Kang</a><sup>1,3</sup>,<br>
     <a href="https://scholar.google.com/citations?user=XJXKp60AAAAJ&hl=en" target="_blank">Minjae Lee</a><sup>1</sup>, 
     <a href="http://cvml.ajou.ac.kr/wiki/index.php/Professor" target="_blank">Hyung Il Koo</a><sup>1,4</sup>, 
-    <a href="https://kangwooklee.com/aboutme/" target="_blank">Kangwook Lee</a><sup>2,5</sup>
+    <a href="https://kangwooklee.com/aboutme/" target="_blank">Kangwook Lee</a><sup>2,5,6</sup>
 </p>
 
 <p>
     <sup>1</sup>FuriosaAI, <sup>2</sup>UW-Madison, <sup>3</sup>Seoul National University, <br>
-    <sup>4</sup>Ajou University, <sup>5</sup>KRAFTON
+    <sup>4</sup>Ajou University, <sup>5</sup>KRAFTON, <sup>6</sup>Ludo Robotics
 </p>
 
 <p>
