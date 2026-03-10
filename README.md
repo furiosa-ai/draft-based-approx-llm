@@ -3,7 +3,7 @@
 <h1>Draft-based Approximate Inference for LLMs</h1>
 
 <p>
-    <a href="https://scholar.google.com/citations?user=G1EpeWYAAAAJ&hl=en" target="_blank">Kevin Galim</a><sup>1*</sup>, 
+    <a href="https://kevingalim.com" target="_blank">Kevin Galim</a><sup>1*</sup>, 
     <a href="https://scholar.google.com/citations?user=H1hMLnkAAAAJ&hl=en" target="_blank">Ethan Ewer</a><sup>2*</sup>, 
     <a href="https://scholar.google.com/citations?user=Q-ARWkwAAAAJ&hl=eh" target="_blank">Wonjun Kang</a><sup>1,3</sup>,<br>
     <a href="https://scholar.google.com/citations?user=XJXKp60AAAAJ&hl=en" target="_blank">Minjae Lee</a><sup>1</sup>, 
